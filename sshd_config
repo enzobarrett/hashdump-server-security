@@ -36,7 +36,7 @@ Protocol 2
 
 # disable X11 forwarding as X11 is very insecure
 # you really shouldn't be running X on a server anyway
-X11Forwarding no
+# see below
 
 # disable port forwarding
 AllowTcpForwarding no
@@ -56,18 +56,19 @@ UseDNS yes
 Compression no
 TCPKeepAlive no
 AllowAgentForwarding no
-PermitRootLogin no
 
 # don't allow .rhosts or /etc/hosts.equiv
 HostbasedAuthentication no
 
-AllowGroups sshusers
-ClientAliveInterval 300
-PasswordAuthentication no
 Port 22
 ListenAddress 0.0.0.0
-
-ChallengeResponseAuthentication yes
-UsePAM yes
-AuthenticationMethods publickey,keyboard-interactive
+AllowGroups sshusers
+ClientAliveInterval 300
+MaxAuthTries 2
 PasswordAuthentication no
+PermitRootLogin no
+X11Forwarding no
+
+#ChallengeResponseAuthentication yes
+#UsePAM yes
+#AuthenticationMethods publickey,keyboard-interactive
